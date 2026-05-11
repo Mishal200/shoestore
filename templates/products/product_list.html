@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shoe Store</title>
+</head>
+
+<body>
+    <h1>👟 Shoe Store</h1>
+
+    {% for product in products %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <img src="{{ product.image.url }}" width="200">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.brand }}</p>
+        <p>₹{{ product.price }}</p>
+        <a href="{% url 'product_detail' product.id %}">
+            View Details
+        </a>
+    </div>
+    {% endfor %}
+    {% extends 'base.html' %}
+
+    {% block title %}Home - Shoe Store{% endblock %}
+
+    {% block content %}
+    <h1 class="mb-4">Latest Shoes</h1>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ product.image.url }}" class="card-img-top" style="height:250px; object-fit:cover;">
+
+                <div class="card-body">
+                    <h5>{{ product.name }}</h5>
+                    <p>{{ product.brand }}</p>
+                    <p class="fw-bold text-success">₹{{ product.price }}</p>
+
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No products available.</p>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+
+</html>
