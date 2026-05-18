@@ -1,53 +1,58 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% block title %}Home - Shoe Store{% endblock %}
 
-<head>
-    <title>Shoe Store</title>
-</head>
+{% block content %}
 
-<body>
-    <h1>👟 Shoe Store</h1>
+<!-- HERO SECTION -->
+<section class="nike-hero">
 
-    {% for product in products %}
-    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-        <img src="{{ product.image.url }}" width="200">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.brand }}</p>
-        <p>₹{{ product.price }}</p>
-        <a href="{% url 'product_detail' product.id %}">
-            View Details
-        </a>
+    <div class="hero-content">
+        <h1>WALK THE FUTURE</h1>
+        <p>Find your perfect pair. Performance. Style. Comfort.</p>
+
+        <a href="#products" class="hero-btn">Shop Now</a>
     </div>
-    {% endfor %}
-    {% extends 'base.html' %}
 
-    {% block title %}Home - Shoe Store{% endblock %}
+</section>
 
-    {% block content %}
-    <h1 class="mb-4">Latest Shoes</h1>
+<!-- PRODUCTS SECTION -->
+<section class="nike-section">
 
-    <div class="row">
+    <div class="section-top">
+        <h2>Latest Shoes</h2>
+        <span>{{ products|length }} Products</span>
+    </div>
+
+    <div class="nike-scroll">
+
         {% for product in products %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="{{ product.image.url }}" class="card-img-top" style="height:250px; object-fit:cover;">
+        <div class="nike-card">
 
-                <div class="card-body">
-                    <h5>{{ product.name }}</h5>
-                    <p>{{ product.brand }}</p>
-                    <p class="fw-bold text-success">₹{{ product.price }}</p>
-
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">
-                        View Details
-                    </a>
-                </div>
+            <div class="img-box">
+                {% if product.image %}
+                <img src="{{ product.image.url }}">
+                {% else %}
+                <img src="https://via.placeholder.com/400">
+                {% endif %}
             </div>
-        </div>
-        {% empty %}
-        <p>No products available.</p>
-        {% endfor %}
-    </div>
-    {% endblock %}
-</body>
 
-</html>
+            <h3>{{ product.name }}</h3>
+
+            <p class="desc">{{ product.description|truncatewords:10 }}</p>
+
+            <div class="bottom">
+                <span class="price">₹{{ product.price }}</span>
+
+                <a href="{% url 'product_detail' product.id %}">
+                    Buy
+                </a>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,56 +1,36 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Your Cart</title>
-</head>
+{% block title %}Shopping Cart{% endblock %}
 
-<body>
-    <h1>🛒 Shopping Cart</h1>
-
-    {% for item in cart_items %}
-    <div>
-        <h3>{{ item.product.name }}</h3>
-        <p>Quantity: {{ item.quantity }}</p>
-        <p>Subtotal: ₹{{ item.subtotal }}</p>
-        <a href="{% url 'remove_from_cart' item.id %}">
-            Remove
-        </a>
-    </div>
-    <hr>
-    {% empty %}
-    <p>Your cart is empty.</p>
-    {% endfor %}
-
-    <h2>Total: ₹{{ total }}</h2>
-
-    <a href="/">Continue Shopping</a>
-    {% if cart_items %}
-    <a href="{% url 'checkout' %}">
-        <button>Proceed to Checkout</button>
-    </a>
-    {% endif %}
-    {% extends 'base.html' %}
-
-    {% block title %}Shopping Cart{% endblock %}
-
-    {% block content %}
-    <h1>Shopping Cart</h1>
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">🛒 Shopping Cart</h1>
 
     {% if cart_items %}
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
             <tr>
                 <th>Product</th>
+                <th>Price</th>
                 <th>Qty</th>
                 <th>Subtotal</th>
                 <th>Action</th>
             </tr>
         </thead>
+
         <tbody>
             {% for item in cart_items %}
             <tr>
-                <td>{{ item.product.name }}</td>
+                <td>
+                    <img src="{{ item.product.image.url }}" width="60" height="60"
+                        style="object-fit:cover; border-radius:6px; margin-bottom:5px;">
+
+                    <br>
+
+                    <strong>{{ item.product.name }}</strong><br>
+                    <small class="text-muted">{{ item.product.brand }}</small>
+                </td>
+                <td>₹{{ item.product.price }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>₹{{ item.subtotal }}</td>
                 <td>
@@ -63,15 +43,23 @@
         </tbody>
     </table>
 
-    <h3>Total: ₹{{ total }}</h3>
+    <div class="text-end">
+        <h3 class="mb-3">Total: ₹{{ total }}</h3>
 
-    <a href="{% url 'checkout' %}" class="btn btn-success">
-        Proceed to Checkout
-    </a>
+        <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">
+            Proceed to Checkout
+        </a>
+    </div>
     {% else %}
-    <p>Your cart is empty.</p>
+    <div class="alert alert-info">
+        Your cart is empty.
+    </div>
     {% endif %}
-    {% endblock %}
-</body>
 
-</html>
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">
+            ← Continue Shopping
+        </a>
+    </div>
+</div>
+{% endblock %}
