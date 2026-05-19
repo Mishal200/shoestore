@@ -6,18 +6,26 @@ from .models import Order, OrderItem
 
 @login_required
 def checkout(request):
+    # Your CartItem model does not have a user field,
+    # so get all cart items.
     cart_items = CartItem.objects.all()
 
-    if not cart_items:
+    # If cart is empty, redirect to cart page
+    if not cart_items.exists():
         return redirect('cart')
 
+    # Calculate total amount
     total = sum(item.subtotal() for item in cart_items)
 
+    # Create order
     order = Order.objects.create(
         user=request.user,
-        total_amount=total
+        total_amount=total,
+        status='Pending'
+        # order_number is generated automatically in Order.save()
     )
 
+    # Create order items and update stock
     for item in cart_items:
         OrderItem.objects.create(
             order=order,
@@ -33,6 +41,23 @@ def checkout(request):
     # Clear cart
     cart_items.delete()
 
+    # Show success page
     return render(request, 'orders/order_success.html', {
         'order': order
+    })
+
+
+def track_order(request):
+    order = None
+    order_number = request.GET.get('order_number')
+
+    if order_number:
+        try:
+            order = Order.objects.get(order_number=order_number)
+        except Order.DoesNotExist:
+            order = None
+
+    return render(request, 'orders/track_order.html', {
+        'order': order,
+        'order_number': order_number,
     })

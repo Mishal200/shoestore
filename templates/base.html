@@ -1,65 +1,94 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Shoe Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shoe Store{% endblock %}</title>
 
-    <!-- CSS MUST BE HERE -->
+    <!-- Main Styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
 
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/order_success.css' %}">
+    <link rel="stylesheet" href="{% static 'css/track_order.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/track_order.css' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
 <body>
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 <nav class="nike-navbar">
 
-    <!-- BRAND -->
+    <!-- Logo -->
     <a href="{% url 'home' %}" class="brand">
         SHOE <span>STORE</span>
     </a>
 
-    <!-- CENTER MENU -->
+    <!-- Menu -->
     <div class="menu">
         <a href="#">New & Featured</a>
         <a href="#">Men</a>
         <a href="#">Women</a>
-      
+        <a href="{% url 'track_order' %}">Track Order</a>
     </div>
 
-    <!-- RIGHT SIDE -->
+    <!-- Right Side -->
     <div class="nav-right">
 
+        <!-- Search -->
         <form method="get" action="{% url 'home' %}" class="search-box">
-            <input type="text" name="q" placeholder="Search shoes...">
+            <input type="text"
+                   name="q"
+                   placeholder="Search shoes..."
+                   value="{{ request.GET.q }}">
         </form>
 
-        <a href="{% url 'wishlist' %}" class="icon-btn">♡</a>
+        <!-- Wishlist -->
+        <a href="{% url 'wishlist' %}" class="icon-btn" title="Wishlist">
+            ♡
+        </a>
 
-        <a href="{% url 'cart' %}" class="icon-btn">🛒</a>
+        <!-- Cart -->
+        <a href="{% url 'cart' %}" class="icon-btn" title="Shopping Cart">
+            🛒
+        </a>
 
         {% if user.is_authenticated %}
-            <span class="user">👤 {{ user.username }}</span>
+            <!-- Username -->
+            <span class="user">
+                👤 {{ user.username }}
+            </span>
 
-            <form method="post" action="{% url 'logout' %}" class="logout-form">
+            <!-- Logout -->
+            <form method="post"
+                  action="{% url 'logout' %}"
+                  class="logout-form">
                 {% csrf_token %}
-                <button type="submit" class="logout-btn">Logout</button>
+                <button type="submit" class="logout-btn">
+                    Logout
+                </button>
             </form>
-
         {% else %}
-            <a href="{% url 'login' %}" class="login-btn">Login</a>
+            <!-- Login -->
+            <a href="{% url 'login' %}" class="login-btn">
+                Login
+            </a>
         {% endif %}
-
     </div>
 
 </nav>
 
-<!-- PAGE CONTENT -->
-<div class="container">
+<!-- ================= MAIN CONTENT ================= -->
+<main class="main-content">
     {% block content %}
     {% endblock %}
-</div>
+</main>
 
 </body>
 </html>
