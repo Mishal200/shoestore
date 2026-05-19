@@ -6,7 +6,7 @@ from products.models import Product
 
 @login_required
 def cart_view(request):
-    # Show only the logged-in user's cart items
+    
     cart_items = CartItem.objects.filter(user=request.user)
     total = sum(item.subtotal() for item in cart_items)
 
@@ -20,13 +20,13 @@ def cart_view(request):
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    # Get existing cart item for this user and product
+    
     cart_item, created = CartItem.objects.get_or_create(
         user=request.user,
         product=product
     )
 
-    # If item already exists, increase quantity
+  
     if not created:
         cart_item.quantity += 1
         cart_item.save()
@@ -36,7 +36,7 @@ def add_to_cart(request, product_id):
 
 @login_required
 def remove_from_cart(request, item_id):
-    # Remove only the current user's cart item
+    
     cart_item = get_object_or_404(
         CartItem,
         id=item_id,
@@ -49,7 +49,7 @@ def remove_from_cart(request, item_id):
 
 @login_required
 def checkout(request):
-    # Get only current user's cart items
+    
     cart_items = CartItem.objects.filter(user=request.user)
     total = sum(item.subtotal() for item in cart_items)
 

@@ -7,7 +7,7 @@
 <div class="cart-page">
     <div class="cart-container">
 
-        <!-- Header -->
+       
         <div class="cart-header">
             <div class="cart-icon">🛒</div>
             <h1>Shopping Cart</h1>
@@ -15,7 +15,7 @@
         </div>
 
         {% if cart_items %}
-            <!-- Cart Table -->
+            
             <div class="cart-table-wrapper">
                 <table class="cart-table">
                     <thead>
@@ -31,7 +31,7 @@
                     <tbody>
                         {% for item in cart_items %}
                         <tr>
-                            <!-- Product -->
+                     
                             <td class="product-cell">
                                 <img src="{{ item.product.image.url }}"
                                      alt="{{ item.product.name }}"
@@ -43,18 +43,16 @@
                                 </div>
                             </td>
 
-                            <!-- Price -->
+                            
                             <td>₹{{ item.product.price }}</td>
 
-                            <!-- Quantity -->
                             <td>{{ item.quantity }}</td>
 
-                            <!-- Subtotal -->
                             <td class="subtotal">
                                 ₹{{ item.subtotal }}
                             </td>
 
-                            <!-- Remove Button -->
+                            
                             <td>
                                 <a href="{% url 'remove_from_cart' item.id %}"
                                    class="remove-btn">
@@ -67,7 +65,6 @@
                 </table>
             </div>
 
-            <!-- Footer -->
             <div class="cart-footer">
                 <div class="total-box">
                     <span>Total Amount</span>
@@ -86,7 +83,7 @@
             </div>
 
         {% else %}
-            <!-- Empty Cart -->
+            
             <div class="empty-cart">
                 <div class="empty-icon">🛍️</div>
                 <h2>Your Cart is Empty</h2>

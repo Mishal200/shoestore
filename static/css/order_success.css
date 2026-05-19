@@ -1,4 +1,3 @@
-/* Page Background */
 .order-success-page {
     min-height: 80vh;
     display: flex;
@@ -8,7 +7,7 @@
     background: linear-gradient(135deg, #f8fafc, #eef2ff);
 }
 
-/* Card */
+
 .success-card {
     background: #ffffff;
     max-width: 700px;
@@ -19,7 +18,7 @@
     text-align: center;
 }
 
-/* Success Icon */
+
 .success-icon {
     font-size: 80px;
     margin-bottom: 20px;
@@ -37,7 +36,7 @@
     }
 }
 
-/* Heading */
+
 .success-card h1 {
     font-size: 42px;
     font-weight: 700;
@@ -51,7 +50,7 @@
     margin-bottom: 35px;
 }
 
-/* Order Details */
+
 .order-details {
     background: #f9fafb;
     border-radius: 20px;
@@ -82,7 +81,7 @@
     font-weight: 600;
 }
 
-/* Status Badge */
+
 .status-badge {
     background: #fef3c7;
     color: #92400e;
@@ -92,7 +91,7 @@
     font-weight: 600;
 }
 
-/* Buttons */
+
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -108,7 +107,7 @@
     transition: all 0.3s ease;
 }
 
-/* Primary Button */
+
 .btn-primary {
     background: #111827;
     color: #ffffff;
@@ -119,7 +118,7 @@
     transform: translateY(-2px);
 }
 
-/* Secondary Button */
+
 .btn-secondary {
     background: #f3f4f6;
     color: #111827;
@@ -130,7 +129,6 @@
     transform: translateY(-2px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .success-card {
         padding: 35px 25px;

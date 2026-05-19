@@ -7,14 +7,14 @@
 <div class="tracking-page">
     <div class="tracking-container">
 
-        <!-- Header -->
+    
         <div class="tracking-header">
             <div class="tracking-icon">📦</div>
             <h1>Track Your Order</h1>
             <p>Enter your order number to check the current delivery status.</p>
         </div>
 
-        <!-- Search Form -->
+       
         <form method="get" class="search-form">
             <input
                 type="text"
@@ -28,7 +28,7 @@
 
         {% if order_number %}
             {% if order %}
-                <!-- Order Details -->
+                
                 <div class="order-card">
 
                     <div class="order-number">
@@ -56,7 +56,7 @@
                         </span>
                     </div>
 
-                    <!-- Progress Tracker -->
+                    
                     <div class="tracking-progress">
 
                         <div class="step active">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             {% else %}
-                <!-- Order Not Found -->
+               
                 <div class="not-found">
                     <div class="not-found-icon">❌</div>
                     <h3>Order Not Found</h3>

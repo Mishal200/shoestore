@@ -1,7 +1,3 @@
-/* =========================================
-   TRACK ORDER PAGE - PREMIUM DESIGN
-========================================= */
-
 .tracking-page {
     min-height: calc(100vh - 90px);
     display: flex;
@@ -38,7 +34,7 @@
     background: linear-gradient(90deg, #111827, #2563eb);
 }
 
-/* Header */
+
 .tracking-header {
     margin-bottom: 35px;
 }
@@ -74,7 +70,6 @@
     line-height: 1.7;
 }
 
-/* Search Form */
 .search-form {
     display: flex;
     gap: 12px;
@@ -119,7 +114,6 @@
     transform: translateY(-2px);
 }
 
-/* Order Card */
 .order-card {
     margin-top: 30px;
     background: #f8fafc;
@@ -137,7 +131,7 @@
     margin-bottom: 30px;
 }
 
-/* Info Rows */
+
 .info-row {
     display: flex;
     justify-content: space-between;
@@ -160,7 +154,7 @@
     color: #0f172a;
 }
 
-/* Status Badge */
+
 .status-badge {
     display: inline-block;
     background: #fef3c7;
@@ -173,7 +167,6 @@
     letter-spacing: 0.5px;
 }
 
-/* Progress Tracker */
 .tracking-progress {
     margin-top: 40px;
     display: flex;
@@ -231,7 +224,7 @@
     color: #0f172a;
 }
 
-/* Not Found */
+
 .not-found {
     margin-top: 30px;
     padding: 30px;
@@ -250,7 +243,6 @@
     color: #7f1d1d;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .tracking-container {
         padding: 35px 20px;
